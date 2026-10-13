@@ -84,7 +84,7 @@ final class LyricWindow: NSPanel {
         guard let visible = NSScreen.main?.visibleFrame else { return }
         setFrameOrigin(NSPoint(
             x: visible.midX - frame.width / 2,
-            y: visible.minY + 12
+            y: visible.minY + 32
         ))
         UserDefaults.standard.set(Self.string(from: frame), forKey: Self.frameKey)
     }
