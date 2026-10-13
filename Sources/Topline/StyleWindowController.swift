@@ -15,7 +15,6 @@ final class StyleWindowController: NSWindowController {
 
     private var unsungWell: NSColorWell?
     private var sungWell: NSColorWell?
-    private var nextWell: NSColorWell?
     private var sizeSlider: NSSlider?
     private var ratioSlider: NSSlider?
     private var nextOpacitySlider: NSSlider?
@@ -27,7 +26,7 @@ final class StyleWindowController: NSWindowController {
         self.onStyleChanged = onStyleChanged
 
         let window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 360, height: 470),
+            contentRect: NSRect(x: 0, y: 0, width: 360, height: 440),
             styleMask: [.titled, .closable],
             backing: .buffered,
             defer: false
@@ -62,12 +61,10 @@ final class StyleWindowController: NSWindowController {
         let ratio = slider(min: 0.4, max: 1.0, action: #selector(ratioChanged))
         let unsung = colorWell(#selector(colorChanged))
         let sung = colorWell(#selector(colorChanged))
-        let next = colorWell(#selector(colorChanged))
         unsungWell = unsung
         sungWell = sung
-        nextWell = next
         let nextOpacity = slider(min: 0.2, max: 1.0, action: #selector(nextOpacityChanged))
-        let bgOpacity = slider(min: 0.05, max: 0.95, action: #selector(bgOpacityChanged))
+        let bgOpacity = slider(min: 0.0, max: 0.95, action: #selector(bgOpacityChanged))
         let width = slider(min: 360, max: 1600, action: #selector(widthChanged))
         sizeSlider = size
         ratioSlider = ratio
@@ -82,9 +79,8 @@ final class StyleWindowController: NSWindowController {
             row("字体", fontButton, value: fontLabel),
             row("当前行字号", size, value: sizeValue),
             row("下一行字号比", ratio, value: ratioValue),
-            row("未唱颜色", unsung),
+            row("未唱/预告颜色", unsung),
             row("已唱填充色", sung),
-            row("下一行颜色", next),
             row("下一行不透明", nextOpacity, value: nextOpacityValue),
             row("背景不透明度", bgOpacity, value: bgOpacityValue),
             row("歌词条宽度", width, value: widthValue),
@@ -162,8 +158,7 @@ final class StyleWindowController: NSWindowController {
     @objc private func colorChanged(_ sender: NSColorWell) {
         switch sender {
         case unsungWell: style.unsungColorHex = Self.hex(from: sender.color)
-        case sungWell: style.sungColorHex = Self.hex(from: sender.color)
-        default: style.nextColorHex = Self.hex(from: sender.color)
+        default: style.sungColorHex = Self.hex(from: sender.color)
         }
         push()
     }
@@ -201,7 +196,6 @@ final class StyleWindowController: NSWindowController {
     private func refreshControls() {
         unsungWell?.color = style.unsungColor
         sungWell?.color = style.sungColor
-        nextWell?.color = NSColor(hex: style.nextColorHex) ?? .white
         sizeSlider?.doubleValue = Double(style.currentSize)
         ratioSlider?.doubleValue = Double(style.nextSizeRatio)
         nextOpacitySlider?.doubleValue = style.nextOpacity

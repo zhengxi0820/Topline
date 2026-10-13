@@ -12,10 +12,9 @@ struct LyricStyle: Codable, Equatable {
     /// 六位十六进制 RRGGBB
     var unsungColorHex: String = "FFFFFF"
     var sungColorHex: String = "FFB340"
-    var nextColorHex: String = "FFFFFF"
-    /// 下一行不透明度 0~1
+    /// 下一行不透明度 0~1（下一行颜色复用未唱颜色，靠透明度压暗）
     var nextOpacity: Double = 0.55
-    /// 背景不透明度 0~1
+    /// 背景不透明度 0~1，0 = 纯文字无背景条
     var backgroundOpacity: Double = 0.45
     /// 歌词条宽度（pt）
     var width: CGFloat = 720
@@ -56,7 +55,7 @@ struct LyricStyle: Codable, Equatable {
     var unsungColor: NSColor { NSColor(hex: unsungColorHex) ?? .white }
     var sungColor: NSColor { NSColor(hex: sungColorHex) ?? .systemYellow }
     var nextColor: NSColor {
-        (NSColor(hex: nextColorHex) ?? .white).withAlphaComponent(nextOpacity)
+        unsungColor.withAlphaComponent(nextOpacity)
     }
 }
 
