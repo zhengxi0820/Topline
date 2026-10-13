@@ -98,7 +98,8 @@ final class LyricWindow: NSPanel {
             layer.alignmentMode = .center
         }
         currentFill.mask = currentMask
-        currentMask.backgroundColor = NSColor.black.cgColor
+        // 遮罩的不透明区只能来自 path 填充矩形；切勿设 backgroundColor——
+        // 那会把整个 bounds 涂满导致填充层永远全量显示（实测踩坑，逐字效果从未生效）
 
         let root = backgroundView.layer!
         root.addSublayer(currentBase)
