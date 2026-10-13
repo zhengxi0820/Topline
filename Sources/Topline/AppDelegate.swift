@@ -70,6 +70,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         lock.target = self
         menu.addItem(lock)
 
+        let bottom = NSMenuItem(title: "回到屏幕底部", action: #selector(moveToBottom(_:)), keyEquivalent: "b")
+        bottom.target = self
+        menu.addItem(bottom)
+
         menu.addItem(NSMenuItem.separator())
 
         let earlier = NSMenuItem(title: "歌词提前 0.2s", action: #selector(nudgeEarlier(_:)), keyEquivalent: "")
@@ -124,6 +128,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let locked = !window.ignoresMouseEvents
         window.ignoresMouseEvents = locked
         sender.state = locked ? .on : .off
+    }
+
+    @objc private func moveToBottom(_ sender: NSMenuItem) {
+        lyricWindow?.moveToBottom()
     }
 
     @objc private func quit(_ sender: NSMenuItem) {
