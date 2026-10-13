@@ -56,11 +56,13 @@ final class LyricWindow: NSPanel {
         // statusBar 层级足以盖住全屏应用内容
         level = .statusBar
 
-        // 拖动结束后窗口服务器会发 didMove，在那里持久化位置
+        // 拖动结束后窗口服务器会发 didMove：先钳回屏内再持久化
+        // （原生拖动允许把无边框窗口甩出屏幕外，甩出去就抓不回来了——实测踩坑）
         NotificationCenter.default.addObserver(
             forName: NSWindow.didMoveNotification, object: self, queue: .main
         ) { [weak self] _ in
             guard let self else { return }
+            self.clampToScreen()
             UserDefaults.standard.set(Self.string(from: self.frame), forKey: Self.frameKey)
         }
         // 窗口尺寸变化时重新摆放文本层（样式改宽度/用户改窗口都会触发）
@@ -71,6 +73,28 @@ final class LyricWindow: NSPanel {
         }
 
         setupLayers()
+        // 启动时也要钳：持久化的 frame 可能来自旧版本的无钳制拖动
+        clampToScreen()
+    }
+
+    /// 保证歌词条至少有 120pt 宽留在屏幕可见区域内
+    private func clampToScreen() {
+        guard let visible = (NSScreen.screens.first { screen in
+            screen.frame.intersects(frame)
+        } ?? NSScreen.main)?.visibleFrame else { return }
+        let minWidthOnScreen: CGFloat = 120
+        var origin = frame.origin
+        origin.x = min(
+            max(origin.x, visible.minX - frame.width + minWidthOnScreen),
+            visible.maxX - minWidthOnScreen
+        )
+        origin.y = min(
+            max(origin.y, visible.minY - frame.height + 40),
+            visible.maxY - frame.height
+        )
+        if origin != frame.origin {
+            setFrameOrigin(origin)
+        }
     }
 
     private func setupLayers() {
