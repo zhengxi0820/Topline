@@ -21,10 +21,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var laterItem: NSMenuItem?
     private var resetOffsetItem: NSMenuItem?
     private var versionsItem: NSMenuItem?
+    private var statusMenu: NSMenu?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         DebugLog.log("启动: script=\(ResourceLocator.adapterScript ?? "nil") framework=\(ResourceLocator.adapterFramework ?? "nil")")
         let window = LyricWindow()
+        // 右键歌词条 = 主菜单（菜单栏图标可能被挤掉，这里才是保底入口）
+        window.menuProvider = { [weak self] in self?.statusMenu ?? NSMenu() }
         window.orderFrontRegardless()
         lyricWindow = window
 
@@ -101,6 +104,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(quit)
 
         item.menu = menu
+        statusMenu = menu
         statusItem = item
     }
 

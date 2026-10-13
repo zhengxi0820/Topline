@@ -11,6 +11,9 @@ final class LyricWindow: NSPanel {
         didSet { rebuildForStyle() }
     }
 
+    /// 右键菜单提供者（菜单栏图标可能被系统因空间不足隐藏，歌词条右键是保底入口）
+    var menuProvider: (() -> NSMenu)?
+
     private let backgroundView = NSView()
     private let currentBase = CATextLayer()
     private let currentFill = CATextLayer()
@@ -206,6 +209,14 @@ final class LyricWindow: NSPanel {
     /// （事件进出进程 + 自动布局重算都在移动路径上），原生拖动完全没有。
     override func mouseDown(with event: NSEvent) {
         performDrag(with: event)
+    }
+
+    /// 右键弹出主菜单：菜单栏状态项可能因空间不足被系统隐藏，这里才是保底入口
+    override func rightMouseDown(with event: NSEvent) {
+        if let menu = menuProvider?() {
+            let location = backgroundView.convert(event.locationInWindow, from: nil)
+            menu.popUp(positioning: nil, at: location, in: backgroundView)
+        }
     }
 
     // MARK: - frame 持久化
