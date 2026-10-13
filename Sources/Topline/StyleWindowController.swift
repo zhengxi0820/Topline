@@ -83,7 +83,7 @@ final class StyleWindowController: NSWindowController {
             row("已唱填充色", sung),
             row("下一行不透明", nextOpacity, value: nextOpacityValue),
             row("背景不透明度", bgOpacity, value: bgOpacityValue),
-            row("歌词条宽度", width, value: widthValue),
+            row("条宽（最小值）", width, value: widthValue),
         ])
         rows.orientation = .vertical
         rows.spacing = 10

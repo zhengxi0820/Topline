@@ -27,6 +27,8 @@ final class LyricWindow: NSPanel {
     /// 逐字宽度缓存（与当前行的 words 对应），行文本变化时重建
     private var wordWidths: [CGFloat] = []
     private var renderedWidth: CGFloat = 0
+    /// 文本层与条边缘的水平留白
+    private let horizontalPadding: CGFloat = 20
 
     init() {
         let screenFrame = NSScreen.main?.visibleFrame ?? NSRect(x: 200, y: 400, width: 1000, height: 600)
@@ -113,7 +115,7 @@ final class LyricWindow: NSPanel {
         let width = backgroundView.bounds.width
         let height = backgroundView.bounds.height
         guard width > 0, height > 0 else { return }
-        let padding: CGFloat = 20
+        let padding = horizontalPadding
         let currentHeight = style.currentSize * 1.4
         let nextHeight = style.currentSize * style.nextSizeRatio * 1.4
         let currentFrame = CGRect(
@@ -127,6 +129,54 @@ final class LyricWindow: NSPanel {
             x: padding, y: height * 0.14,
             width: width - padding * 2, height: nextHeight
         )
+    }
+
+    // MARK: - 自适应条宽
+
+    private var currentLines: [LyricLine]?
+    /// 整首歌最长行的渲染宽度（当前行字体与下一行字体都量），条宽的下限保障
+    private var maxTextWidth: CGFloat = 0
+
+    /// 歌词变更后重算条宽需求；nil（切歌/无歌词）回到样式宽度
+    func lyricsDidChange(_ lines: [LyricLine]?) {
+        currentLines = lines
+        measureMaxTextWidth()
+        applyBarWidth()
+    }
+
+    private func measureMaxTextWidth() {
+        guard let lines = currentLines, !lines.isEmpty else {
+            maxTextWidth = 0
+            return
+        }
+        let font = style.currentFont
+        let nextFont = style.nextFont
+        var maxWidth: CGFloat = 0
+        for (index, line) in lines.enumerated() {
+            maxWidth = max(maxWidth, ceil(textWidth(line.text, font: font)))
+            if index + 1 < lines.count {
+                maxWidth = max(maxWidth, ceil(textWidth(line.text, font: nextFont)))
+            }
+        }
+        maxTextWidth = maxWidth
+    }
+
+    private func textWidth(_ text: String, font: NSFont) -> CGFloat {
+        NSAttributedString(string: text, attributes: [.font: font]).size().width
+    }
+
+    /// 条宽 = max(样式宽度, 最长行 + 左右留白)，上限为屏幕可用宽（超长行退回截断）；
+    /// 保持水平居中调整。宽度旋钮因此语义为"最小宽度"。
+    private func applyBarWidth() {
+        let desired = max(style.width, maxTextWidth + horizontalPadding * 2)
+        let cap = (NSScreen.main?.visibleFrame.width ?? 1920) - 16
+        let newWidth = min(desired, cap)
+        guard abs(frame.width - newWidth) > 0.5 else { return }
+        var newFrame = frame
+        newFrame.origin.x = frame.midX - newWidth / 2
+        newFrame.size.width = newWidth
+        setFrame(newFrame, display: false)
+        positionLayers()
     }
 
     // MARK: - 渲染入口
@@ -215,6 +265,9 @@ final class LyricWindow: NSPanel {
             displayedLineText = nil
             displayedNext = nil
         }
+        // 字体/字号/最小宽度变了，最长行宽度也要跟着重算
+        measureMaxTextWidth()
+        applyBarWidth()
         positionLayers()
     }
 

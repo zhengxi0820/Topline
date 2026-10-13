@@ -16,7 +16,7 @@ struct LyricStyle: Codable, Equatable {
     var nextOpacity: Double = 0.55
     /// 背景不透明度 0~1，0 = 纯文字无背景条
     var backgroundOpacity: Double = 0.45
-    /// 歌词条宽度（pt）
+    /// 歌词条最小宽度（pt），实际条宽自适应展开到整首歌最长行
     var width: CGFloat = 720
 
     static let defaults = LyricStyle()

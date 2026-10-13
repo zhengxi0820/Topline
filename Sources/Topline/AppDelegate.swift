@@ -201,14 +201,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func applyStyle(_ style: LyricStyle) {
         guard let window = lyricWindow else { return }
-        // 宽度变化时保持居中改宽，并持久化新 frame
-        if abs(window.frame.width - style.width) > 0.5 {
-            var frame = window.frame
-            let centerX = frame.midX
-            frame.origin.x = centerX - style.width / 2
-            frame.size.width = style.width
-            window.setFrame(frame, display: true)
-        }
+        // 条宽（含自适应展开）由窗口自身处理：style didSet 会重算最长行并调整
         window.style = style
     }
 
@@ -219,6 +212,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             track = nil
             lines = nil
             lastRenderedIndex = nil
+            lyricWindow?.lyricsDidChange(nil)
             lyricWindow?.showStatus("等待播放…")
             return
         }
@@ -252,8 +246,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         if let fetched {
             lines = fetched
             lastRenderedIndex = nil
+            lyricWindow?.lyricsDidChange(fetched)
             DebugLog.log("歌词就绪: \(fetched.count) 行")
         } else {
+            lyricWindow?.lyricsDidChange(nil)
             lyricWindow?.showStatus("未找到歌词 · \(state.title) — \(state.artist)")
         }
     }
