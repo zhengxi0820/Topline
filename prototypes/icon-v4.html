@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Topline 图标方案 v4 — 混彩文字配色变体</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "PingFang SC", sans-serif;
+    background: #0f1117; color: #e7e9ee;
+    padding: 48px 40px 80px;
+  }
+  header { max-width: 1180px; margin: 0 auto 8px; }
+  h1 { font-size: 26px; font-weight: 700; }
+  .sub { color: #9aa1ad; font-size: 14px; margin-top: 8px; line-height: 1.7; }
+  .grid {
+    max-width: 1180px; margin: 28px auto 0; display: grid;
+    grid-template-columns: 1fr 1fr; gap: 28px;
+  }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+  .card {
+    background: #161923; border: 1px solid #232838; border-radius: 18px;
+    padding: 28px; display: flex; flex-direction: column; gap: 18px;
+  }
+  .card h2 { font-size: 17px; }
+  .card h2 .tag { font-size: 12px; color: #7d8695; font-weight: 400; margin-left: 8px; }
+  .card p.desc { color: #9aa1ad; font-size: 13px; line-height: 1.75; min-height: 66px; }
+  .sw { height: 8px; border-radius: 4px; }
+  .stage {
+    border-radius: 14px; padding: 36px; display: flex;
+    align-items: center; justify-content: center; gap: 28px;
+    transition: background .25s;
+  }
+  .stage.dark  { background: #1b1e26; }
+  .stage.light { background: #dfe2e8; }
+  .stage svg.big {
+    width: 220px; height: 220px;
+    filter: drop-shadow(0 14px 28px rgba(0,0,0,.45));
+  }
+  .minis { display: flex; align-items: flex-end; gap: 22px; padding: 4px 2px; }
+  .minis svg { filter: drop-shadow(0 3px 6px rgba(0,0,0,.4)); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Topline 图标 · v4（「♪ 正在播放」的 6 组克制配色）</h1>
+  <div class="sub">
+    底座与 v3 完全一致（墨色底 + 粉游标 + 半亮 Topline），只换底部文字的渐变色。
+    全部只取 2–3 色，且都从主基调的粉 / 墨色系里取色。预览有极缓慢流动，导出 .icns 时定格一帧。
+  </div>
+</header>
+
+<div style="max-width:1180px;margin:20px auto 0;display:flex;gap:10px;align-items:center;font-size:13px;color:#9aa1ad;">
+  预览底色：
+  <button id="btnDark" onclick="setStage('dark')" style="background:#2d5bd7;border:1px solid #2d5bd7;color:#fff;padding:7px 16px;border-radius:8px;font-size:13px;cursor:pointer;">深色</button>
+  <button id="btnLight" onclick="setStage('light')" style="background:#1c202b;color:#cfd4dd;border:1px solid #2a2f3d;padding:7px 16px;border-radius:8px;font-size:13px;cursor:pointer;">浅色</button>
+</div>
+
+<div class="grid">
+
+  <!-- H1 · 粉→紫 -->
+  <div class="card">
+    <h2>H1 · 粉 → 紫 <span class="tag">同族延伸 · 推荐</span></h2>
+    <p class="desc">
+      从游标的粉出发，自然过渡到紫——和主文字的亮白、粉游标同一血缘，
+      整体像同一个调色盘里拿出来的色。最不会出错的一组。
+    </p>
+    <div class="sw" style="background:linear-gradient(90deg,#FF375F,#BF5AF2)"></div>
+    <div class="stage dark">
+      <svg class="big" viewBox="0 0 824 824"><use href="#iconH1"/></svg>
+    </div>
+    <div class="minis">
+      <svg width="64" height="64" viewBox="0 0 824 824"><use href="#iconH1"/></svg>
+      <svg width="32" height="32" viewBox="0 0 824 824"><use href="#iconH1"/></svg>
+      <svg width="16" height="16" viewBox="0 0 824 824"><use href="#iconH1"/></svg>
+    </div>
+  </div>
+
+  <!-- H2 · 粉→橙 -->
+  <div class="card">
+    <h2>H2 · 粉 → 橙 <span class="tag">暖调</span></h2>
+    <p class="desc">
+      粉到琥珀橙的暖色双拼，像舞台灯光。整体比 H1 更热烈，
+      与墨色底的对比也最强。
+    </p>
+    <div class="sw" style="background:linear-gradient(90deg,#FF375F,#FF9F0A)"></div>
+    <div class="stage dark">
+      <svg class="big" viewBox="0 0 824 824"><use href="#iconH2"/></svg>
+    </div>
+    <div class="minis">
+      <svg width="64" height="64" viewBox="0 0 824 824"><use href="#iconH2"/></svg>
+      <svg width="32" height="32" viewBox="0 0 824 824"><use href="#iconH2"/></svg>
+      <svg width="16" height="16" viewBox="0 0 824 824"><use href="#iconH2"/></svg>
+    </div>
+  </div>
+
+  <!-- H3 · 粉→青 -->
+  <div class="card">
+    <h2>H3 · 粉 → 青 <span class="tag">冷暖撞色</span></h2>
+    <p class="desc">
+      粉与青是互补撞色，「正在播放」自带一点舞台霓虹感。
+      仍只取两色，比彩虹克制得多，但最有活力。
+    </p>
+    <div class="sw" style="background:linear-gradient(90deg,#FF375F,#64D2FF)"></div>
+    <div class="stage dark">
+      <svg class="big" viewBox="0 0 824 824"><use href="#iconH3"/></svg>
+    </div>
+    <div class="minis">
+      <svg width="64" height="64" viewBox="0 0 824 824"><use href="#iconH3"/></svg>
+      <svg width="32" height="32" viewBox="0 0 824 824"><use href="#iconH3"/></svg>
+      <svg width="16" height="16" viewBox="0 0 824 824"><use href="#iconH3"/></svg>
+    </div>
+  </div>
+
+  <!-- H4 · 紫→青 -->
+  <div class="card">
+    <h2>H4 · 紫 → 青 <span class="tag">冷调 · 游标是唯一暖色</span></h2>
+    <p class="desc">
+      底部走冷色（紫→青），让粉色游标成为整颗图标唯一的暖色焦点，
+      主次关系最分明的一组。
+    </p>
+    <div class="sw" style="background:linear-gradient(90deg,#BF5AF2,#64D2FF)"></div>
+    <div class="stage dark">
+      <svg class="big" viewBox="0 0 824 824"><use href="#iconH4"/></svg>
+    </div>
+    <div class="minis">
+      <svg width="64" height="64" viewBox="0 0 824 824"><use href="#iconH4"/></svg>
+      <svg width="32" height="32" viewBox="0 0 824 824"><use href="#iconH4"/></svg>
+      <svg width="16" height="16" viewBox="0 0 824 824"><use href="#iconH4"/></svg>
+    </div>
+  </div>
+
+  <!-- H5 · 粉→紫→青 -->
+  <div class="card">
+    <h2>H5 · 粉 → 紫 → 青 <span class="tag">三色</span></h2>
+    <p class="desc">
+      三色渐变：从游标的粉出发，经紫过渡到青，信息量刚好——
+      比双色更「彩」，比彩虹克制。
+    </p>
+    <div class="sw" style="background:linear-gradient(90deg,#FF375F,#BF5AF2,#64D2FF)"></div>
+    <div class="stage dark">
+      <svg class="big" viewBox="0 0 824 824"><use href="#iconH5"/></svg>
+    </div>
+    <div class="minis">
+      <svg width="64" height="64" viewBox="0 0 824 824"><use href="#iconH5"/></svg>
+      <svg width="32" height="32" viewBox="0 0 824 824"><use href="#iconH5"/></svg>
+      <svg width="16" height="16" viewBox="0 0 824 824"><use href="#iconH5"/></svg>
+    </div>
+  </div>
+
+  <!-- H6 · 橙→粉→紫 -->
+  <div class="card">
+    <h2>H6 · 橙 → 粉 → 紫 <span class="tag">暖到冷渐层</span></h2>
+    <p class="desc">
+      从橙经粉到紫的完整暖调渐层，中段正好落在游标的粉色上，
+      与上方形成「呼应式」配色。
+    </p>
+    <div class="sw" style="background:linear-gradient(90deg,#FF9F0A,#FF375F,#BF5AF2)"></div>
+    <div class="stage dark">
+      <svg class="big" viewBox="0 0 824 824"><use href="#iconH6"/></svg>
+    </div>
+    <div class="minis">
+      <svg width="64" height="64" viewBox="0 0 824 824"><use href="#iconH6"/></svg>
+      <svg width="32" height="32" viewBox="0 0 824 824"><use href="#iconH6"/></svg>
+      <svg width="16" height="16" viewBox="0 0 824 824"><use href="#iconH6"/></svg>
+    </div>
+  </div>
+
+</div>
+
+<!-- ========= 共享 SVG 定义 ========= -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="bgInk" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1B1E2B"/><stop offset="1" stop-color="#0C0E15"/>
+    </linearGradient>
+    <radialGradient id="glowPink" cx="0.5" cy="0.24" r="0.6">
+      <stop offset="0" stop-color="#FF375F" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#FF375F" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="clipC"><rect x="0" y="0" width="474" height="824"/></clipPath>
+    <filter id="blur10" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="10"/></filter>
+
+    <linearGradient id="gH1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#FF375F"/><stop offset="1" stop-color="#BF5AF2"/>
+      <animateTransform attributeName="gradientTransform" type="translate" values="0 0; 0.3 0; 0 0" dur="9s" repeatCount="indefinite"/>
+    </linearGradient>
+    <linearGradient id="gH2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#FF375F"/><stop offset="1" stop-color="#FF9F0A"/>
+      <animateTransform attributeName="gradientTransform" type="translate" values="0.25 0; 0 0; 0.25 0" dur="8s" repeatCount="indefinite"/>
+    </linearGradient>
+    <linearGradient id="gH3" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#FF375F"/><stop offset="1" stop-color="#64D2FF"/>
+      <animateTransform attributeName="gradientTransform" type="translate" values="0 0; 0.3 0; 0 0" dur="8.5s" repeatCount="indefinite"/>
+    </linearGradient>
+    <linearGradient id="gH4" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#BF5AF2"/><stop offset="1" stop-color="#64D2FF"/>
+      <animateTransform attributeName="gradientTransform" type="translate" values="0.25 0; 0 0; 0.25 0" dur="9.5s" repeatCount="indefinite"/>
+    </linearGradient>
+    <linearGradient id="gH5" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#FF375F"/><stop offset="0.5" stop-color="#BF5AF2"/><stop offset="1" stop-color="#64D2FF"/>
+      <animateTransform attributeName="gradientTransform" type="translate" values="0 0; 0.3 0; 0 0" dur="9s" repeatCount="indefinite"/>
+    </linearGradient>
+    <linearGradient id="gH6" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#FF9F0A"/><stop offset="0.5" stop-color="#FF375F"/><stop offset="1" stop-color="#BF5AF2"/>
+      <animateTransform attributeName="gradientTransform" type="translate" values="0.25 0; 0 0; 0.25 0" dur="8s" repeatCount="indefinite"/>
+    </linearGradient>
+
+    <!-- C 底座：墨色底 + 半亮 Topline + 粉游标 -->
+    <g id="cBase">
+      <rect width="824" height="824" rx="185.4" fill="url(#bgInk)"/>
+      <rect width="824" height="824" rx="185.4" fill="url(#glowPink)"/>
+      <text x="412" y="392" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.22"
+            font-family="-apple-system, 'SF Pro Display', 'PingFang SC', sans-serif"
+            font-weight="800" font-size="172" letter-spacing="-4">Topline</text>
+      <text x="412" y="392" text-anchor="middle" fill="#FFFFFF"
+            font-family="-apple-system, 'SF Pro Display', 'PingFang SC', sans-serif"
+            font-weight="800" font-size="172" letter-spacing="-4" clip-path="url(#clipC)">Topline</text>
+      <circle cx="474" cy="348" r="16" fill="#FF375F" filter="url(#blur10)"/>
+      <rect x="468" y="272" width="12" height="116" rx="6" fill="#FF375F"/>
+    </g>
+
+    <g id="iconH1">
+      <use href="#cBase"/>
+      <text x="412" y="520" text-anchor="middle" fill="url(#gH1)"
+            font-family="-apple-system, 'PingFang SC', sans-serif"
+            font-weight="500" font-size="64">&#x266A; 正在播放</text>
+    </g>
+    <g id="iconH2">
+      <use href="#cBase"/>
+      <text x="412" y="520" text-anchor="middle" fill="url(#gH2)"
+            font-family="-apple-system, 'PingFang SC', sans-serif"
+            font-weight="500" font-size="64">&#x266A; 正在播放</text>
+    </g>
+    <g id="iconH3">
+      <use href="#cBase"/>
+      <text x="412" y="520" text-anchor="middle" fill="url(#gH3)"
+            font-family="-apple-system, 'PingFang SC', sans-serif"
+            font-weight="500" font-size="64">&#x266A; 正在播放</text>
+    </g>
+    <g id="iconH4">
+      <use href="#cBase"/>
+      <text x="412" y="520" text-anchor="middle" fill="url(#gH4)"
+            font-family="-apple-system, 'PingFang SC', sans-serif"
+            font-weight="500" font-size="64">&#x266A; 正在播放</text>
+    </g>
+    <g id="iconH5">
+      <use href="#cBase"/>
+      <text x="412" y="520" text-anchor="middle" fill="url(#gH5)"
+            font-family="-apple-system, 'PingFang SC', sans-serif"
+            font-weight="500" font-size="64">&#x266A; 正在播放</text>
+    </g>
+    <g id="iconH6">
+      <use href="#cBase"/>
+      <text x="412" y="520" text-anchor="middle" fill="url(#gH6)"
+            font-family="-apple-system, 'PingFang SC', sans-serif"
+            font-weight="500" font-size="64">&#x266A; 正在播放</text>
+    </g>
+
+  </defs>
+</svg>
+
+<script>
+  function setStage(mode) {
+    document.querySelectorAll('.stage').forEach(el => el.className = 'stage ' + mode);
+    const d = document.getElementById('btnDark'), l = document.getElementById('btnLight');
+    d.style.background = mode === 'dark' ? '#2d5bd7' : '#1c202b';
+    d.style.color = mode === 'dark' ? '#fff' : '#cfd4dd';
+    l.style.background = mode === 'light' ? '#2d5bd7' : '#1c202b';
+    l.style.color = mode === 'light' ? '#fff' : '#cfd4dd';
+  }
+</script>
+</body>
+</html>

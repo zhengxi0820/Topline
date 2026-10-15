@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Topline 图标方案 v1</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "PingFang SC", sans-serif;
+    background: #0f1117; color: #e7e9ee;
+    padding: 48px 40px 80px;
+  }
+  header { max-width: 1180px; margin: 0 auto 8px; }
+  h1 { font-size: 26px; font-weight: 700; }
+  .sub { color: #9aa1ad; font-size: 14px; margin-top: 8px; line-height: 1.7; }
+  .toolbar { max-width: 1180px; margin: 20px auto 0; display: flex; gap: 10px; align-items: center; }
+  .toolbar button {
+    background: #1c202b; color: #cfd4dd; border: 1px solid #2a2f3d;
+    padding: 7px 16px; border-radius: 8px; font-size: 13px; cursor: pointer;
+  }
+  .toolbar button.active { background: #2d5bd7; border-color: #2d5bd7; color: #fff; }
+  .grid {
+    max-width: 1180px; margin: 28px auto 0; display: grid;
+    grid-template-columns: 1fr 1fr; gap: 28px;
+  }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+  .card {
+    background: #161923; border: 1px solid #232838; border-radius: 18px;
+    padding: 28px; display: flex; flex-direction: column; gap: 18px;
+  }
+  .card h2 { font-size: 17px; }
+  .card h2 .tag { font-size: 12px; color: #7d8695; font-weight: 400; margin-left: 8px; }
+  .card p.desc { color: #9aa1ad; font-size: 13px; line-height: 1.75; min-height: 66px; }
+  .stage {
+    border-radius: 14px; padding: 36px; display: flex;
+    align-items: center; justify-content: center; gap: 28px;
+    transition: background .25s;
+  }
+  .stage.dark  { background: #1b1e26; }
+  .stage.light { background: #dfe2e8; }
+  .stage svg.big {
+    width: 220px; height: 220px;
+    filter: drop-shadow(0 14px 28px rgba(0,0,0,.45));
+  }
+  .minis { display: flex; align-items: flex-end; gap: 22px; padding: 4px 2px; }
+  .minis svg { filter: drop-shadow(0 3px 6px rgba(0,0,0,.4)); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Topline 图标 · 四个方向（v1）</h1>
+  <div class="sub">
+    macOS Big Sur 风格圆角方形（824 画板）。核心意象：屏幕顶部一条逐字点亮的 KTV 歌词条。
+    每张卡下方附 64 / 32 / 16 px 缩小稿，用于检验 Finder / 关于窗口里的小尺寸可读性。
+  </div>
+</header>
+
+<div class="toolbar">
+  预览底色：
+  <button id="btnDark" class="active" onclick="setStage('dark')">深色</button>
+  <button id="btnLight" onclick="setStage('light')">浅色</button>
+</div>
+
+<div class="grid">
+
+  <!-- ============ 方案 A：顶部一条 ============ -->
+  <div class="card">
+    <h2>A · 顶部一条 <span class="tag">推荐</span></h2>
+    <p class="desc">
+      夜色底上一条胶囊歌词条悬在画面上沿，左段是蓝紫 KTV 渐变、亮点停在演唱位置，
+      下方一条更暗的「下一行预告」。最直白地讲出产品名 Topline 的本义：
+      「顶部那行歌词」。剪影极简，16px 仍可辨认。
+    </p>
+    <div class="stage dark">
+      <svg class="big" viewBox="0 0 824 824" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="aBg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#262B3D"/><stop offset="1" stop-color="#12141F"/>
+          </linearGradient>
+          <linearGradient id="aFill" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#4FACFE"/><stop offset="1" stop-color="#9F6CFF"/>
+          </linearGradient>
+          <radialGradient id="aGlow" cx="0.5" cy="0.28" r="0.65">
+            <stop offset="0" stop-color="#8FA6FF" stop-opacity="0.16"/>
+            <stop offset="1" stop-color="#8FA6FF" stop-opacity="0"/>
+          </radialGradient>
+          <clipPath id="aClip"><rect x="116" y="288" width="600" height="104" rx="52"/></clipPath>
+          <filter id="aBlur" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="9"/></filter>
+        </defs>
+        <rect width="824" height="824" rx="185.4" fill="url(#aBg)"/>
+        <rect width="824" height="824" rx="185.4" fill="url(#aGlow)"/>
+        <!-- 主歌词条：未唱部分 -->
+        <rect x="116" y="288" width="600" height="104" rx="52" fill="#FFFFFF" opacity="0.13"/>
+        <rect x="116" y="288" width="600" height="104" rx="52" fill="none" stroke="#FFFFFF" stroke-opacity="0.20" stroke-width="2"/>
+        <!-- 已唱部分（KTV 渐变填充） -->
+        <g clip-path="url(#aClip)"><rect x="116" y="288" width="392" height="104" fill="url(#aFill)"/></g>
+        <!-- 演唱位置亮点 -->
+        <circle cx="508" cy="340" r="15" fill="#FFFFFF" filter="url(#aBlur)"/>
+        <circle cx="508" cy="340" r="10" fill="#FFFFFF"/>
+        <!-- 下一行预告 -->
+        <rect x="116" y="436" width="352" height="44" rx="22" fill="#FFFFFF" opacity="0.09"/>
+      </svg>
+    </div>
+    <div class="minis">
+      <svg width="64" height="64" viewBox="0 0 824 824"><use href="#iconA"/></svg>
+      <svg width="32" height="32" viewBox="0 0 824 824"><use href="#iconA"/></svg>
+      <svg width="16" height="16" viewBox="0 0 824 824"><use href="#iconA"/></svg>
+    </div>
+  </div>
+
+  <!-- ============ 方案 B：T 字进度 ============ -->
+  <div class="card">
+    <h2>B · T 字进度 <span class="tag">字母梗</span></h2>
+    <p class="desc">
+      紫罗兰渐变底上一个白色 T——横杠本身就是一条唱了一半的歌词条（实心白 = 已唱，
+      半透 = 未唱，端点带亮点），竖杠是 Topline 的 T。把「T = Topline」和「进度条」
+      合成一个字形，品牌感最强；小尺寸下 T 的识别度也好。
+    </p>
+    <div class="stage dark">
+      <svg class="big" viewBox="0 0 824 824" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bBg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#6366F1"/><stop offset="1" stop-color="#A855F7"/>
+          </linearGradient>
+          <radialGradient id="bGlow" cx="0.3" cy="0.2" r="0.8">
+            <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.14"/>
+            <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+          </radialGradient>
+          <clipPath id="bClip"><rect x="192" y="236" width="440" height="96" rx="48"/></clipPath>
+          <filter id="bBlur" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="8"/></filter>
+        </defs>
+        <rect width="824" height="824" rx="185.4" fill="url(#bBg)"/>
+        <rect width="824" height="824" rx="185.4" fill="url(#bGlow)"/>
+        <!-- 竖杠 -->
+        <rect x="368" y="236" width="88" height="392" rx="44" fill="#FFFFFF"/>
+        <!-- 横杠：未唱 -->
+        <rect x="192" y="236" width="440" height="96" rx="48" fill="#FFFFFF" opacity="0.30"/>
+        <!-- 横杠：已唱 -->
+        <g clip-path="url(#bClip)"><rect x="192" y="236" width="300" height="96" fill="#FFFFFF"/></g>
+        <!-- 演唱位置亮点 -->
+        <circle cx="492" cy="284" r="13" fill="#EDE9FE" filter="url(#bBlur)"/>
+        <circle cx="492" cy="284" r="9" fill="#F5F3FF"/>
+      </svg>
+    </div>
+    <div class="minis">
+      <svg width="64" height="64" viewBox="0 0 824 824"><use href="#iconB"/></svg>
+      <svg width="32" height="32" viewBox="0 0 824 824"><use href="#iconB"/></svg>
+      <svg width="16" height="16" viewBox="0 0 824 824"><use href="#iconB"/></svg>
+    </div>
+  </div>
+
+  <!-- ============ 方案 C：逐字填充 ============ -->
+  <div class="card">
+    <h2>C · 逐字填充 <span class="tag">最写实</span></h2>
+    <p class="desc">
+      直接把核心功能画出来：暗底上一行「Topline」，唱过的字亮白、未唱的字压暗，
+      游标处一道粉色光标停在字间，下面一行是暗淡的「下一行预告」。
+      信息量最足、最像产品截图；代价是 32px 以下文字糊掉，小尺寸只剩氛围。
+    </p>
+    <div class="stage dark">
+      <svg class="big" viewBox="0 0 824 824" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="cBg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#1B1E2B"/><stop offset="1" stop-color="#0C0E15"/>
+          </linearGradient>
+          <radialGradient id="cGlow" cx="0.5" cy="0.24" r="0.6">
+            <stop offset="0" stop-color="#FF375F" stop-opacity="0.10"/>
+            <stop offset="1" stop-color="#FF375F" stop-opacity="0"/>
+          </radialGradient>
+          <clipPath id="cClip"><rect x="0" y="0" width="474" height="824"/></clipPath>
+          <filter id="cBlur" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="10"/></filter>
+        </defs>
+        <rect width="824" height="824" rx="185.4" fill="url(#cBg)"/>
+        <rect width="824" height="824" rx="185.4" fill="url(#cGlow)"/>
+        <!-- 未唱（暗） -->
+        <text x="412" y="392" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.22"
+              font-family="-apple-system, 'SF Pro Display', 'PingFang SC', sans-serif"
+              font-weight="800" font-size="172" letter-spacing="-4">Topline</text>
+        <!-- 已唱（亮，左段裁切） -->
+        <text x="412" y="392" text-anchor="middle" fill="#FFFFFF"
+              font-family="-apple-system, 'SF Pro Display', 'PingFang SC', sans-serif"
+              font-weight="800" font-size="172" letter-spacing="-4" clip-path="url(#cClip)">Topline</text>
+        <!-- 游标 -->
+        <circle cx="474" cy="348" r="16" fill="#FF375F" filter="url(#cBlur)"/>
+        <rect x="468" y="272" width="12" height="116" rx="6" fill="#FF375F"/>
+        <!-- 下一行预告 -->
+        <text x="412" y="520" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.14"
+              font-family="-apple-system, 'PingFang SC', sans-serif"
+              font-weight="500" font-size="64">♪ 正在播放</text>
+      </svg>
+    </div>
+    <div class="minis">
+      <svg width="64" height="64" viewBox="0 0 824 824"><use href="#iconC"/></svg>
+      <svg width="32" height="32" viewBox="0 0 824 824"><use href="#iconC"/></svg>
+      <svg width="16" height="16" viewBox="0 0 824 824"><use href="#iconC"/></svg>
+    </div>
+  </div>
+
+  <!-- ============ 方案 D：主旋律线 ============ -->
+  <div class="card">
+    <h2>D · 主旋律线 <span class="tag">音乐术语向</span></h2>
+    <p class="desc">
+      取 Topline 的另一个词义「主旋律声部」：青蓝渐变底，一条白色旋律起伏线掠过
+      三条五线谱式的淡线。更「音乐 App」、更抽象，但和「屏幕顶部悬浮条」的产品
+      形态关联最弱，需要说明才看得懂。
+    </p>
+    <div class="stage dark">
+      <svg class="big" viewBox="0 0 824 824" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="dBg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#2DD4BF"/><stop offset="1" stop-color="#0EA5E9"/>
+          </linearGradient>
+          <radialGradient id="dGlow" cx="0.5" cy="0.35" r="0.75">
+            <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.16"/>
+            <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+          </radialGradient>
+          <filter id="dBlur" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="10"/></filter>
+        </defs>
+        <rect width="824" height="824" rx="185.4" fill="url(#dBg)"/>
+        <rect width="824" height="824" rx="185.4" fill="url(#dGlow)"/>
+        <!-- 谱线 -->
+        <rect x="150" y="322" width="524" height="8" rx="4" fill="#FFFFFF" opacity="0.22"/>
+        <rect x="150" y="408" width="524" height="8" rx="4" fill="#FFFFFF" opacity="0.22"/>
+        <rect x="150" y="494" width="524" height="8" rx="4" fill="#FFFFFF" opacity="0.22"/>
+        <!-- 旋律线 -->
+        <path d="M 152 500 C 250 500 262 330 360 330 C 445 330 452 512 548 480 C 612 458 620 348 668 336"
+              fill="none" stroke="#FFFFFF" stroke-width="40" stroke-linecap="round" stroke-opacity="0.96"/>
+        <circle cx="668" cy="336" r="36" fill="#FFFFFF" filter="url(#dBlur)" opacity="0.8"/>
+        <circle cx="668" cy="336" r="26" fill="#FFFFFF"/>
+      </svg>
+    </div>
+    <div class="minis">
+      <svg width="64" height="64" viewBox="0 0 824 824"><use href="#iconD"/></svg>
+      <svg width="32" height="32" viewBox="0 0 824 824"><use href="#iconD"/></svg>
+      <svg width="16" height="16" viewBox="0 0 824 824"><use href="#iconD"/></svg>
+    </div>
+  </div>
+
+</div>
+
+<!-- 复用符号定义（仅供 minis 引用） -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="aBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#262B3D"/><stop offset="1" stop-color="#12141F"/>
+    </linearGradient>
+    <linearGradient id="aFill" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4FACFE"/><stop offset="1" stop-color="#9F6CFF"/>
+    </linearGradient>
+    <radialGradient id="aGlow" cx="0.5" cy="0.28" r="0.65">
+      <stop offset="0" stop-color="#8FA6FF" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#8FA6FF" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="aClip"><rect x="116" y="288" width="600" height="104" rx="52"/></clipPath>
+    <filter id="aBlur" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="9"/></filter>
+
+    <linearGradient id="bBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6366F1"/><stop offset="1" stop-color="#A855F7"/>
+    </linearGradient>
+    <radialGradient id="bGlow" cx="0.3" cy="0.2" r="0.8">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="bClip"><rect x="192" y="236" width="440" height="96" rx="48"/></clipPath>
+    <filter id="bBlur" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="8"/></filter>
+
+    <linearGradient id="cBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1B1E2B"/><stop offset="1" stop-color="#0C0E15"/>
+    </linearGradient>
+    <radialGradient id="cGlow" cx="0.5" cy="0.24" r="0.6">
+      <stop offset="0" stop-color="#FF375F" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#FF375F" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="cClip"><rect x="0" y="0" width="474" height="824"/></clipPath>
+    <filter id="cBlur" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="10"/></filter>
+
+    <linearGradient id="dBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2DD4BF"/><stop offset="1" stop-color="#0EA5E9"/>
+    </linearGradient>
+    <radialGradient id="dGlow" cx="0.5" cy="0.35" r="0.75">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="dBlur" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="10"/></filter>
+
+    <g id="iconA">
+      <rect width="824" height="824" rx="185.4" fill="url(#aBg)"/>
+      <rect width="824" height="824" rx="185.4" fill="url(#aGlow)"/>
+      <rect x="116" y="288" width="600" height="104" rx="52" fill="#FFFFFF" opacity="0.13"/>
+      <rect x="116" y="288" width="600" height="104" rx="52" fill="none" stroke="#FFFFFF" stroke-opacity="0.20" stroke-width="2"/>
+      <g clip-path="url(#aClip)"><rect x="116" y="288" width="392" height="104" fill="url(#aFill)"/></g>
+      <circle cx="508" cy="340" r="10" fill="#FFFFFF"/>
+      <rect x="116" y="436" width="352" height="44" rx="22" fill="#FFFFFF" opacity="0.09"/>
+    </g>
+    <g id="iconB">
+      <rect width="824" height="824" rx="185.4" fill="url(#bBg)"/>
+      <rect width="824" height="824" rx="185.4" fill="url(#bGlow)"/>
+      <rect x="368" y="236" width="88" height="392" rx="44" fill="#FFFFFF"/>
+      <rect x="192" y="236" width="440" height="96" rx="48" fill="#FFFFFF" opacity="0.30"/>
+      <g clip-path="url(#bClip)"><rect x="192" y="236" width="300" height="96" fill="#FFFFFF"/></g>
+      <circle cx="492" cy="284" r="9" fill="#F5F3FF"/>
+    </g>
+    <g id="iconC">
+      <rect width="824" height="824" rx="185.4" fill="url(#cBg)"/>
+      <rect width="824" height="824" rx="185.4" fill="url(#cGlow)"/>
+      <text x="412" y="392" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.22"
+            font-family="-apple-system, 'SF Pro Display', 'PingFang SC', sans-serif"
+            font-weight="800" font-size="172" letter-spacing="-4">Topline</text>
+      <text x="412" y="392" text-anchor="middle" fill="#FFFFFF"
+            font-family="-apple-system, 'SF Pro Display', 'PingFang SC', sans-serif"
+            font-weight="800" font-size="172" letter-spacing="-4" clip-path="url(#cClip)">Topline</text>
+      <rect x="468" y="272" width="12" height="116" rx="6" fill="#FF375F"/>
+      <text x="412" y="520" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.14"
+            font-family="-apple-system, 'PingFang SC', sans-serif" font-weight="500" font-size="64">♪ 正在播放</text>
+    </g>
+    <g id="iconD">
+      <rect width="824" height="824" rx="185.4" fill="url(#dBg)"/>
+      <rect width="824" height="824" rx="185.4" fill="url(#dGlow)"/>
+      <rect x="150" y="322" width="524" height="8" rx="4" fill="#FFFFFF" opacity="0.22"/>
+      <rect x="150" y="408" width="524" height="8" rx="4" fill="#FFFFFF" opacity="0.22"/>
+      <rect x="150" y="494" width="524" height="8" rx="4" fill="#FFFFFF" opacity="0.22"/>
+      <path d="M 152 500 C 250 500 262 330 360 330 C 445 330 452 512 548 480 C 612 458 620 348 668 336"
+            fill="none" stroke="#FFFFFF" stroke-width="40" stroke-linecap="round" stroke-opacity="0.96"/>
+      <circle cx="668" cy="336" r="26" fill="#FFFFFF"/>
+    </g>
+  </defs>
+</svg>
+
+<script>
+  function setStage(mode) {
+    document.querySelectorAll('.stage').forEach(el => el.className = 'stage ' + mode);
+    document.getElementById('btnDark').classList.toggle('active', mode === 'dark');
+    document.getElementById('btnLight').classList.toggle('active', mode === 'light');
+  }
+</script>
+</body>
+</html>

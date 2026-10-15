@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Topline 图标方案 v2 — C/D 方向深化</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "PingFang SC", sans-serif;
+    background: #0f1117; color: #e7e9ee;
+    padding: 48px 40px 80px;
+  }
+  header { max-width: 1180px; margin: 0 auto 8px; }
+  h1 { font-size: 26px; font-weight: 700; }
+  .sub { color: #9aa1ad; font-size: 14px; margin-top: 8px; line-height: 1.7; }
+  .group { max-width: 1180px; margin: 40px auto 0; font-size: 13px; color: #7d8695;
+           letter-spacing: 2px; font-weight: 600; }
+  .grid {
+    max-width: 1180px; margin: 14px auto 0; display: grid;
+    grid-template-columns: 1fr 1fr; gap: 28px;
+  }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+  .card {
+    background: #161923; border: 1px solid #232838; border-radius: 18px;
+    padding: 28px; display: flex; flex-direction: column; gap: 18px;
+  }
+  .card h2 { font-size: 17px; }
+  .card h2 .tag { font-size: 12px; color: #7d8695; font-weight: 400; margin-left: 8px; }
+  .card p.desc { color: #9aa1ad; font-size: 13px; line-height: 1.75; min-height: 66px; }
+  .stage {
+    border-radius: 14px; padding: 36px; display: flex;
+    align-items: center; justify-content: center; gap: 28px;
+    transition: background .25s;
+  }
+  .stage.dark  { background: #1b1e26; }
+  .stage.light { background: #dfe2e8; }
+  .stage svg.big {
+    width: 220px; height: 220px;
+    filter: drop-shadow(0 14px 28px rgba(0,0,0,.45));
+  }
+  .minis { display: flex; align-items: flex-end; gap: 22px; padding: 4px 2px; }
+  .minis svg { filter: drop-shadow(0 3px 6px rgba(0,0,0,.4)); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Topline 图标 · v2（C 逐字填充 × D 主旋律线 方向）</h1>
+  <div class="sub">
+    按「C 系 / D 系 / 两方向杂交」分三组，共 6 款。所有图标共用底部一份 SVG 定义，
+    每张卡下附 64 / 32 / 16 px 缩小稿。右上可切换预览底色。
+  </div>
+</header>
+
+<div class="toolbar" style="max-width:1180px;margin:20px auto 0;display:flex;gap:10px;align-items:center;font-size:13px;color:#9aa1ad;">
+  预览底色：
+  <button id="btnDark" class="active" onclick="setStage('dark')" style="background:#2d5bd7;border:1px solid #2d5bd7;color:#fff;padding:7px 16px;border-radius:8px;font-size:13px;cursor:pointer;">深色</button>
+  <button id="btnLight" onclick="setStage('light')" style="background:#1c202b;color:#cfd4dd;border:1px solid #2a2f3d;padding:7px 16px;border-radius:8px;font-size:13px;cursor:pointer;">浅色</button>
+</div>
+
+<div class="group">杂交 · 形是 D，灵魂是 C</div>
+<div class="grid">
+
+  <!-- F1 · 旋律线逐字点亮 -->
+  <div class="card">
+    <h2>F1 · 旋律线逐字点亮 <span class="tag">C×D · 推荐</span></h2>
+    <p class="desc">
+      把主旋律线本身当成歌词条：唱过的左段是青蓝渐变发亮，未唱的右段压暗，
+      白色亮点停在演唱位置。剪影是 D 的旋律线，细节是 C 的逐字点亮——两个喜欢的方向合在一颗图标里。
+    </p>
+    <div class="stage dark">
+      <svg class="big" viewBox="0 0 824 824"><use href="#iconF1"/></svg>
+    </div>
+    <div class="minis">
+      <svg width="64" height="64" viewBox="0 0 824 824"><use href="#iconF1"/></svg>
+      <svg width="32" height="32" viewBox="0 0 824 824"><use href="#iconF1"/></svg>
+      <svg width="16" height="16" viewBox="0 0 824 824"><use href="#iconF1"/></svg>
+    </div>
+  </div>
+
+  <!-- E1 · 歌词条里写字 -->
+  <div class="card">
+    <h2>E1 · 歌词条里写字 <span class="tag">A×C</span></h2>
+    <p class="desc">
+      A 的胶囊歌词条里真的装着一行「Topline」在逐字点亮：条内左段是蓝紫渐变、字全亮，
+      右段半透、字压暗。16px 下退化成 A 的极简剪影，放大后能读出字——远看近看都有内容。
+    </p>
+    <div class="stage dark">
+      <svg class="big" viewBox="0 0 824 824"><use href="#iconE1"/></svg>
+    </div>
+    <div class="minis">
+      <svg width="64" height="64" viewBox="0 0 824 824"><use href="#iconE1"/></svg>
+      <svg width="32" height="32" viewBox="0 0 824 824"><use href="#iconE1"/></svg>
+      <svg width="16" height="16" viewBox="0 0 824 824"><use href="#iconE1"/></svg>
+    </div>
+  </div>
+
+</div>
+
+<div class="group">C 系 · 逐字填充</div>
+<div class="grid">
+
+  <!-- E2 · 逐字 亮底 -->
+  <div class="card">
+    <h2>E2 · 逐字 · 亮底 <span class="tag">C 系</span></h2>
+    <p class="desc">
+      C 的构图搬到红粉渐变亮底：白字唱过的全亮、未唱的半透，白色游标带辉光。
+      在一堆深色图标的 Dock / 访达里最跳、最抓眼的一版。
+    </p>
+    <div class="stage dark">
+      <svg class="big" viewBox="0 0 824 824"><use href="#iconE2"/></svg>
+    </div>
+    <div class="minis">
+      <svg width="64" height="64" viewBox="0 0 824 824"><use href="#iconE2"/></svg>
+      <svg width="32" height="32" viewBox="0 0 824 824"><use href="#iconE2"/></svg>
+      <svg width="16" height="16" viewBox="0 0 824 824"><use href="#iconE2"/></svg>
+    </div>
+  </div>
+
+  <!-- E3 · 中文逐字 -->
+  <div class="card">
+    <h2>E3 · 中文逐字 <span class="tag">C 系</span></h2>
+    <p class="desc">
+      按产品真实场景画中文歌词「月亮代表我的心」：逐字硬切亮暗（第四个字后停一枚粉色游标），
+      下方一条「下一行预告」。这是最「KTV」的一版——逐字而非逐笔，和实际填充行为一致。
+    </p>
+    <div class="stage dark">
+      <svg class="big" viewBox="0 0 824 824"><use href="#iconE3"/></svg>
+    </div>
+    <div class="minis">
+      <svg width="64" height="64" viewBox="0 0 824 824"><use href="#iconE3"/></svg>
+      <svg width="32" height="32" viewBox="0 0 824 824"><use href="#iconE3"/></svg>
+      <svg width="16" height="16" viewBox="0 0 824 824"><use href="#iconE3"/></svg>
+    </div>
+  </div>
+
+</div>
+
+<div class="group">D 系 · 主旋律线</div>
+<div class="grid">
+
+  <!-- F2 · 声波顶线 -->
+  <div class="card">
+    <h2>F2 · 声波顶线 <span class="tag">D 系</span></h2>
+    <p class="desc">
+      一排压暗的声波柱，一条亮渐变线把每个峰顶串起来——Topline = 波形顶上那条线。
+      概念最巧的一版：「顶部那条线」是画面的主角。左侧三个峰点是全亮的（已唱）。
+    </p>
+    <div class="stage dark">
+      <svg class="big" viewBox="0 0 824 824"><use href="#iconF2"/></svg>
+    </div>
+    <div class="minis">
+      <svg width="64" height="64" viewBox="0 0 824 824"><use href="#iconF2"/></svg>
+      <svg width="32" height="32" viewBox="0 0 824 824"><use href="#iconF2"/></svg>
+      <svg width="16" height="16" viewBox="0 0 824 824"><use href="#iconF2"/></svg>
+    </div>
+  </div>
+
+  <!-- F3 · 谱线上的音符 -->
+  <div class="card">
+    <h2>F3 · 谱线上的音符 <span class="tag">D×C</span></h2>
+    <p class="desc">
+      一条五线谱式的淡线上坐着一颗 ♫，音符本身在被「逐字点亮」：左半亮白、右半压暗，
+      粉色游标停在中间。图形元素最少的一版，靠填充和游标讲 KTV 的故事。
+    </p>
+    <div class="stage dark">
+      <svg class="big" viewBox="0 0 824 824"><use href="#iconF3"/></svg>
+    </div>
+    <div class="minis">
+      <svg width="64" height="64" viewBox="0 0 824 824"><use href="#iconF3"/></svg>
+      <svg width="32" height="32" viewBox="0 0 824 824"><use href="#iconF3"/></svg>
+      <svg width="16" height="16" viewBox="0 0 824 824"><use href="#iconF3"/></svg>
+    </div>
+  </div>
+
+</div>
+
+<!-- ========= 共享 SVG 定义 ========= -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <!-- 背景渐变 -->
+    <linearGradient id="bgNight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#262B3D"/><stop offset="1" stop-color="#12141F"/>
+    </linearGradient>
+    <linearGradient id="bgInk" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1B1E2B"/><stop offset="1" stop-color="#0C0E15"/>
+    </linearGradient>
+    <linearGradient id="bgVivid" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FA233B"/><stop offset="1" stop-color="#FB5C74"/>
+    </linearGradient>
+    <linearGradient id="bgTeal" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0E2A33"/><stop offset="1" stop-color="#0A1424"/>
+    </linearGradient>
+    <linearGradient id="bgNavy" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#171C2E"/><stop offset="1" stop-color="#0C0F1A"/>
+    </linearGradient>
+    <!-- 填充/描边渐变 -->
+    <linearGradient id="gradBP" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4FACFE"/><stop offset="1" stop-color="#9F6CFF"/>
+    </linearGradient>
+    <linearGradient id="gradLine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6EE7D8"/><stop offset="1" stop-color="#60A5FA"/>
+    </linearGradient>
+    <linearGradient id="gradTop" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7C6CFF"/><stop offset="1" stop-color="#22D3EE"/>
+    </linearGradient>
+    <!-- 氛围光 -->
+    <radialGradient id="glowBlue" cx="0.5" cy="0.28" r="0.65">
+      <stop offset="0" stop-color="#8FA6FF" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#8FA6FF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowPink" cx="0.5" cy="0.24" r="0.6">
+      <stop offset="0" stop-color="#FF375F" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#FF375F" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowWhite" cx="0.35" cy="0.2" r="0.8">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.15"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowTeal" cx="0.5" cy="0.32" r="0.7">
+      <stop offset="0" stop-color="#2DD4BF" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#2DD4BF" stop-opacity="0"/>
+    </radialGradient>
+    <!-- 裁切 -->
+    <clipPath id="clipF1"><rect x="0" y="0" width="484" height="824"/></clipPath>
+    <clipPath id="clipE1"><rect x="0" y="0" width="480" height="824"/></clipPath>
+    <clipPath id="clipE1Bar"><rect x="76" y="288" width="672" height="164" rx="82"/></clipPath>
+    <clipPath id="clipE2"><rect x="0" y="0" width="470" height="824"/></clipPath>
+    <clipPath id="clipE3"><rect x="0" y="0" width="461" height="824"/></clipPath>
+    <clipPath id="clipF3"><rect x="0" y="0" width="462" height="824"/></clipPath>
+    <!-- 滤镜 -->
+    <filter id="blur9" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="9"/></filter>
+    <filter id="blur10" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="10"/></filter>
+
+    <!-- F1 · 旋律线逐字点亮 -->
+    <g id="iconF1">
+      <rect width="824" height="824" rx="185.4" fill="url(#bgTeal)"/>
+      <rect width="824" height="824" rx="185.4" fill="url(#glowTeal)"/>
+      <path d="M 132 476 C 225 476 245 332 342 332 C 432 332 452 496 546 468 C 616 447 642 362 692 352"
+            fill="none" stroke="#FFFFFF" stroke-opacity="0.16" stroke-width="36" stroke-linecap="round"/>
+      <path d="M 132 476 C 225 476 245 332 342 332 C 432 332 452 496 546 468 C 616 447 642 362 692 352"
+            fill="none" stroke="url(#gradLine)" stroke-width="36" stroke-linecap="round" clip-path="url(#clipF1)"/>
+      <circle cx="484" cy="489" r="18" fill="#FFFFFF" filter="url(#blur9)"/>
+      <circle cx="484" cy="489" r="13" fill="#FFFFFF"/>
+    </g>
+
+    <!-- E1 · 歌词条里写字 -->
+    <g id="iconE1">
+      <rect width="824" height="824" rx="185.4" fill="url(#bgNight)"/>
+      <rect width="824" height="824" rx="185.4" fill="url(#glowBlue)"/>
+      <rect x="76" y="288" width="672" height="164" rx="82" fill="#FFFFFF" opacity="0.12"/>
+      <rect x="76" y="288" width="672" height="164" rx="82" fill="none" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="2"/>
+      <g clip-path="url(#clipE1Bar)"><rect x="76" y="288" width="404" height="164" fill="url(#gradBP)"/></g>
+      <text x="412" y="404" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.32"
+            font-family="-apple-system, 'SF Pro Display', 'PingFang SC', sans-serif"
+            font-weight="800" font-size="96" letter-spacing="-3">Topline</text>
+      <text x="412" y="404" text-anchor="middle" fill="#FFFFFF"
+            font-family="-apple-system, 'SF Pro Display', 'PingFang SC', sans-serif"
+            font-weight="800" font-size="96" letter-spacing="-3" clip-path="url(#clipE1)">Topline</text>
+      <circle cx="480" cy="370" r="16" fill="#FFFFFF" filter="url(#blur9)"/>
+      <circle cx="480" cy="370" r="11" fill="#FFFFFF"/>
+      <rect x="76" y="498" width="400" height="52" rx="26" fill="#FFFFFF" opacity="0.08"/>
+    </g>
+
+    <!-- E2 · 逐字 亮底 -->
+    <g id="iconE2">
+      <rect width="824" height="824" rx="185.4" fill="url(#bgVivid)"/>
+      <rect width="824" height="824" rx="185.4" fill="url(#glowWhite)"/>
+      <text x="412" y="392" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.38"
+            font-family="-apple-system, 'SF Pro Display', 'PingFang SC', sans-serif"
+            font-weight="800" font-size="172" letter-spacing="-4">Topline</text>
+      <text x="412" y="392" text-anchor="middle" fill="#FFFFFF"
+            font-family="-apple-system, 'SF Pro Display', 'PingFang SC', sans-serif"
+            font-weight="800" font-size="172" letter-spacing="-4" clip-path="url(#clipE2)">Topline</text>
+      <circle cx="470" cy="330" r="16" fill="#FFFFFF" filter="url(#blur9)"/>
+      <rect x="464" y="272" width="12" height="116" rx="6" fill="#FFFFFF"/>
+      <text x="412" y="520" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.55"
+            font-family="-apple-system, 'PingFang SC', sans-serif" font-weight="500" font-size="64">♪ 正在播放</text>
+    </g>
+
+    <!-- E3 · 中文逐字 -->
+    <g id="iconE3">
+      <rect width="824" height="824" rx="185.4" fill="url(#bgInk)"/>
+      <rect width="824" height="824" rx="185.4" fill="url(#glowPink)"/>
+      <text x="412" y="444" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.22"
+            font-family="'PingFang SC', -apple-system, sans-serif"
+            font-weight="700" font-size="94" letter-spacing="2">月亮代表我的心</text>
+      <text x="412" y="444" text-anchor="middle" fill="#FFFFFF"
+            font-family="'PingFang SC', -apple-system, sans-serif"
+            font-weight="700" font-size="94" letter-spacing="2" clip-path="url(#clipE3)">月亮代表我的心</text>
+      <circle cx="461" cy="384" r="16" fill="#FF375F" filter="url(#blur9)"/>
+      <rect x="455" y="322" width="12" height="124" rx="6" fill="#FF375F"/>
+      <rect x="212" y="540" width="400" height="44" rx="22" fill="#FFFFFF" opacity="0.08"/>
+    </g>
+
+    <!-- F2 · 声波顶线 -->
+    <g id="iconF2">
+      <rect width="824" height="824" rx="185.4" fill="url(#bgNavy)"/>
+      <rect width="824" height="824" rx="185.4" fill="url(#glowWhite)"/>
+      <rect x="130" y="410" width="48" height="150" rx="24" fill="#FFFFFF" opacity="0.15"/>
+      <rect x="216" y="300" width="48" height="260" rx="24" fill="#FFFFFF" opacity="0.15"/>
+      <rect x="302" y="360" width="48" height="200" rx="24" fill="#FFFFFF" opacity="0.15"/>
+      <rect x="388" y="230" width="48" height="330" rx="24" fill="#FFFFFF" opacity="0.15"/>
+      <rect x="474" y="320" width="48" height="240" rx="24" fill="#FFFFFF" opacity="0.15"/>
+      <rect x="560" y="260" width="48" height="300" rx="24" fill="#FFFFFF" opacity="0.15"/>
+      <rect x="646" y="390" width="48" height="170" rx="24" fill="#FFFFFF" opacity="0.15"/>
+      <path d="M 154 410 C 186 332 208 300 240 300 C 274 300 292 360 326 360 C 360 360 378 230 412 230 C 446 230 464 320 498 320 C 532 320 550 260 584 260 C 618 260 644 322 670 390"
+            fill="none" stroke="url(#gradTop)" stroke-width="18" stroke-linecap="round"/>
+      <circle cx="154" cy="410" r="11" fill="#FFFFFF"/>
+      <circle cx="240" cy="300" r="11" fill="#FFFFFF"/>
+      <circle cx="326" cy="360" r="11" fill="#FFFFFF"/>
+      <circle cx="412" cy="230" r="11" fill="#FFFFFF" opacity="0.35"/>
+      <circle cx="498" cy="320" r="11" fill="#FFFFFF" opacity="0.35"/>
+      <circle cx="584" cy="260" r="11" fill="#FFFFFF" opacity="0.35"/>
+      <circle cx="670" cy="390" r="11" fill="#FFFFFF" opacity="0.35"/>
+    </g>
+
+    <!-- F3 · 谱线上的音符 -->
+    <g id="iconF3">
+      <rect width="824" height="824" rx="185.4" fill="url(#bgInk)"/>
+      <rect width="824" height="824" rx="185.4" fill="url(#glowBlue)"/>
+      <rect x="150" y="468" width="524" height="10" rx="5" fill="#FFFFFF" opacity="0.18"/>
+      <text x="412" y="556" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.22"
+            font-family="-apple-system, 'PingFang SC', sans-serif" font-weight="600" font-size="330">&#x266B;&#xFE0E;</text>
+      <text x="412" y="556" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.95"
+            font-family="-apple-system, 'PingFang SC', sans-serif" font-weight="600" font-size="330"
+            clip-path="url(#clipF3)">&#x266B;&#xFE0E;</text>
+      <circle cx="462" cy="420" r="16" fill="#FF375F" filter="url(#blur10)"/>
+      <rect x="456" y="308" width="12" height="212" rx="6" fill="#FF375F"/>
+    </g>
+
+  </defs>
+</svg>
+
+<script>
+  function setStage(mode) {
+    document.querySelectorAll('.stage').forEach(el => el.className = 'stage ' + mode);
+    const d = document.getElementById('btnDark'), l = document.getElementById('btnLight');
+    d.style.background = mode === 'dark' ? '#2d5bd7' : '#1c202b';
+    d.style.color = mode === 'dark' ? '#fff' : '#cfd4dd';
+    l.style.background = mode === 'light' ? '#2d5bd7' : '#1c202b';
+    l.style.color = mode === 'light' ? '#fff' : '#cfd4dd';
+  }
+</script>
+</body>
+</html>

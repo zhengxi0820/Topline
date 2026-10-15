@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!-- Topline App 图标母版（1024 画布，squircle 824 + 四周 100 透明边距）
+       再生成：运行同目录 make-icon.sh -->
+  <defs>
+    <linearGradient id="bgInk" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1B1E2B"/><stop offset="1" stop-color="#0C0E15"/>
+    </linearGradient>
+    <radialGradient id="glowPink" cx="0.5" cy="0.24" r="0.6">
+      <stop offset="0" stop-color="#FF375F" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#FF375F" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="dotGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FF375F" stop-opacity="0.85"/>
+      <stop offset="0.4" stop-color="#FF375F" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#FF375F" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="clipC"><rect x="0" y="0" width="474" height="824"/></clipPath>
+  </defs>
+
+  <g transform="translate(100,100)">
+    <!-- 底：墨色 + 顶部粉晕 -->
+    <rect width="824" height="824" rx="185.4" fill="url(#bgInk)"/>
+    <rect width="824" height="824" rx="185.4" fill="url(#glowPink)"/>
+
+    <!-- 歌词字：未唱压暗 -->
+    <text x="412" y="392" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.22"
+          font-family="-apple-system, 'SF Pro Display', 'PingFang SC', sans-serif"
+          font-weight="800" font-size="172" letter-spacing="-4">Topline</text>
+    <!-- 已唱亮白（左侧裁切） -->
+    <text x="412" y="392" text-anchor="middle" fill="#FFFFFF"
+          font-family="-apple-system, 'SF Pro Display', 'PingFang SC', sans-serif"
+          font-weight="800" font-size="172" letter-spacing="-4"
+          clip-path="url(#clipC)">Topline</text>
+
+    <!-- 演唱游标 -->
+    <circle cx="474" cy="348" r="40" fill="url(#dotGlow)"/>
+    <rect x="468" y="272" width="12" height="116" rx="6" fill="#FF375F"/>
+
+    <!-- 声波柱：宽12 间距16 底对齐 y538，高度按截图实测 38/85/64/60/44 -->
+    <g fill="#FFFFFF" opacity="0.28">
+      <rect x="350" y="500" width="12" height="38" rx="6"/>
+      <rect x="378" y="453" width="12" height="85" rx="6"/>
+      <rect x="406" y="474" width="12" height="64" rx="6"/>
+      <rect x="434" y="478" width="12" height="60" rx="6"/>
+      <rect x="462" y="494" width="12" height="44" rx="6"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Topline 图标 · 定稿（v5）</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "PingFang SC", sans-serif;
+    background: #0f1117; color: #e7e9ee;
+    padding: 48px 40px 80px;
+  }
+  header { max-width: 900px; margin: 0 auto 8px; }
+  h1 { font-size: 26px; font-weight: 700; }
+  .sub { color: #9aa1ad; font-size: 14px; margin-top: 8px; line-height: 1.7; }
+  .card {
+    max-width: 900px; margin: 28px auto 0;
+    background: #161923; border: 1px solid #232838; border-radius: 18px;
+    padding: 32px; display: flex; flex-direction: column; gap: 20px;
+  }
+  .stages { display: flex; gap: 24px; align-items: center; justify-content: center; flex-wrap: wrap; }
+  .stage { border-radius: 14px; padding: 24px; }
+  .stage.dark  { background: #1b1e26; }
+  .stage.light { background: #dfe2e8; }
+  .stage svg { filter: drop-shadow(0 14px 28px rgba(0,0,0,.45)); display: block; }
+  .minis { display: flex; align-items: flex-end; gap: 22px; justify-content: center; padding: 4px 2px; }
+  .minis svg { filter: drop-shadow(0 3px 6px rgba(0,0,0,.4)); }
+  .meta { color: #9aa1ad; font-size: 13px; line-height: 1.9; }
+  .meta code { background: #1c202b; border: 1px solid #2a2f3d; border-radius: 6px;
+               padding: 1px 8px; font-size: 12px; color: #cfd4dd; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Topline 图标 · 定稿</h1>
+  <div class="sub">
+    C 底座 + 声波柱（柱高按定稿截图实测）。母版
+    <code>prototypes/icon-final.svg</code>，产物 <code>Resources/AppIcon.icns</code>，
+    已由 <code>build.sh</code> 打进 app。
+  </div>
+</header>
+
+<div class="card">
+  <div class="stages">
+    <div class="stage dark">
+      <svg width="260" height="260" viewBox="0 0 824 824"><use href="#iconFinal"/></svg>
+    </div>
+    <div class="stage light">
+      <svg width="140" height="140" viewBox="0 0 824 824"><use href="#iconFinal"/></svg>
+    </div>
+  </div>
+  <div class="minis">
+    <svg width="64" height="64" viewBox="0 0 824 824"><use href="#iconFinal"/></svg>
+    <svg width="32" height="32" viewBox="0 0 824 824"><use href="#iconFinal"/></svg>
+    <svg width="16" height="16" viewBox="0 0 824 824"><use href="#iconFinal"/></svg>
+  </div>
+  <div class="meta">
+    规格：824 画板 / 墨色渐变底 #1B1E2B→#0C0E15 + 顶部粉晕 · Topline 800 字重，左段亮白右段 22% ·
+    游标 #FF375F（12×116）· 声波柱 5 根，宽 12 间距 16，底对齐 y538，高 38/85/64/60/44，白 28%。
+  </div>
+</div>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="bgInk" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1B1E2B"/><stop offset="1" stop-color="#0C0E15"/>
+    </linearGradient>
+    <radialGradient id="glowPink" cx="0.5" cy="0.24" r="0.6">
+      <stop offset="0" stop-color="#FF375F" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#FF375F" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="dotGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FF375F" stop-opacity="0.85"/>
+      <stop offset="0.4" stop-color="#FF375F" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#FF375F" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="clipC"><rect x="0" y="0" width="474" height="824"/></clipPath>
+    <g id="iconFinal">
+      <rect width="824" height="824" rx="185.4" fill="url(#bgInk)"/>
+      <rect width="824" height="824" rx="185.4" fill="url(#glowPink)"/>
+      <text x="412" y="392" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.22"
+            font-family="-apple-system, 'SF Pro Display', 'PingFang SC', sans-serif"
+            font-weight="800" font-size="172" letter-spacing="-4">Topline</text>
+      <text x="412" y="392" text-anchor="middle" fill="#FFFFFF"
+            font-family="-apple-system, 'SF Pro Display', 'PingFang SC', sans-serif"
+            font-weight="800" font-size="172" letter-spacing="-4"
+            clip-path="url(#clipC)">Topline</text>
+      <circle cx="474" cy="348" r="40" fill="url(#dotGlow)"/>
+      <rect x="468" y="272" width="12" height="116" rx="6" fill="#FF375F"/>
+      <g fill="#FFFFFF" opacity="0.28">
+        <rect x="350" y="500" width="12" height="38" rx="6"/>
+        <rect x="378" y="453" width="12" height="85" rx="6"/>
+        <rect x="406" y="474" width="12" height="64" rx="6"/>
+        <rect x="434" y="478" width="12" height="60" rx="6"/>
+        <rect x="462" y="494" width="12" height="44" rx="6"/>
+      </g>
+    </g>
+  </defs>
+</svg>
+
+</body>
+</html>
